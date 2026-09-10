@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDisplayName</key>
+	<string>ServiceDiag</string>
+	<key>NFCReaderUsageDescription</key>
+	<string>Потрібен доступ до NFC для перевірки антени та читання тестових тегів / медичних сенсорів у сервісному центрі.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Перевірка камери під час діагностики телефону.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Перевірка мікрофона під час діагностики телефону.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Перевірка стану Bluetooth під час діагностики.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Перевірка стану Bluetooth під час діагностики.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Перевірка доступності Face ID під час діагностики.</string>
+	<key>com.apple.developer.nfc.readersession.formats</key>
+	<array>
+		<string>NDEF</string>
+		<string>TAG</string>
+	</array>
+</dict>
+</plist>

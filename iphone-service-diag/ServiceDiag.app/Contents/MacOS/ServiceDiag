@@ -1,0 +1,25 @@
+#!/bin/bash
+# Launcher inside ServiceDiag.app (double-clickable on Mac)
+set -euo pipefail
+
+# .../iphone-service-diag/ServiceDiag.app/Contents/MacOS/ServiceDiag
+# → ROOT = iphone-service-diag
+ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
+
+export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"
+
+if [ ! -d "$ROOT/desktop" ]; then
+  osascript -e 'display dialog "Не знайдено папку desktop.\nServiceDiag.app має лежати всередині папки iphone-service-diag." buttons {"OK"} default button 1 with title "ServiceDiag"'
+  exit 1
+fi
+
+VENV="$ROOT/desktop/.venv"
+if [ ! -d "$VENV" ]; then
+  osascript -e 'display dialog "Спочатку один раз запустіть файл:\nВстановити один раз.command" buttons {"OK"} default button 1 with title "ServiceDiag"'
+  exit 1
+fi
+
+# shellcheck disable=SC1091
+source "$VENV/bin/activate"
+cd "$ROOT/desktop"
+exec python -m service_diag.gui
