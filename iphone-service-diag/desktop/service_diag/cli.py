@@ -117,5 +117,13 @@ def version_cmd() -> None:
     console.print(__version__)
 
 
+@app.command("gui")
+def gui_cmd() -> None:
+    """Відкрити вікно з кнопками (зручно на Mac)."""
+    from service_diag.gui import main as gui_main
+
+    gui_main()
+
+
 if __name__ == "__main__":
     app()

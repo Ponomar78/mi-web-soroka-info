@@ -26,7 +26,15 @@ Apple не дає стороннім програмам повний досту�
 2. На ПК: `python -m service_diag scan` — звіт.
 3. На телефоні: апка **ServiceDiag** → кнопка «Повний тест» (NFC — піднести тег/датчик Libre).
 
-## Швидкий старт (ПК)
+## Mac: подвійний клік (рекомендовано)
+
+Дивіться **[НА_MAC_ПОДВІЙНИЙ_КЛІК.md](НА_MAC_ПОДВІЙНИЙ_КЛІК.md)**.
+
+1. Download ZIP з GitHub → папку `iphone-service-diag` на **Desktop**  
+2. Один раз: **`Встановити один раз.command`**  
+3. Далі: подвійний клік **`ServiceDiag.app`** або **`Запустити.command`**
+
+## Швидкий старт (термінал)
 
 ```bash
 cd iphone-service-diag/desktop
@@ -34,10 +42,11 @@ python3 -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
-# Список пристроїв
-python -m service_diag devices
+# Вікно з кнопками
+python -m service_diag gui
 
-# Повний звіт у ../reports/
+# Або CLI
+python -m service_diag devices
 python -m service_diag scan --out ../reports
 ```
 
