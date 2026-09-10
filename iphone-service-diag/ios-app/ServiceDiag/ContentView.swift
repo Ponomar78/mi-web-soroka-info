@@ -22,6 +22,14 @@ struct ContentView: View {
                     }
                 }
 
+                Section("Після вологи / немає звуку") {
+                    Text("1) Динамік  2) Слухавка  3) Навушники  4) На Mac — повний скан (panic-full)")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    Button("Тест динаміка") { Task { await runner.run(.speaker) } }
+                    Button("Тест слухавки") { Task { await runner.run(.earpiece) } }
+                }
+
                 Section("Окремі тести") {
                     ForEach(TestKind.allCases) { kind in
                         Button(kind.title) {

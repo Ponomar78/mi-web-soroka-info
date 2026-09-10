@@ -109,7 +109,36 @@ def scan_cmd(
     health = (report.get("battery") or {}).get("estimated_health_percent")
     if health is not None:
         console.print(f"Батарея (оцінка): [bold]{health}%[/bold]")
-    console.print("[bold]NFC:[/bold] апаратний тест тільки в апці ServiceDiag на телефоні.")
+    advice = report.get("advice") or {}
+    panic_n = len(advice.get("panic_full_files") or [])
+    console.print(f"panic-full файлів: [bold]{panic_n}[/bold]")
+    for h in (advice.get("hypotheses") or [])[:5]:
+        console.print(f"• {h}")
+    console.print("[bold]NFC/Face ID/звук:[/bold] тести в апці на телефоні.")
+
+
+@app.command("wifi")
+def wifi_cmd(udid: Optional[str] = typer.Option(None, help="UDID пристрою")) -> None:
+    """Wi‑Fi info з diagnostics relay."""
+    console.print_json(json.dumps(C.collect_wifi(udid), default=str, ensure_ascii=False))
+
+
+@app.command("analyze")
+def analyze_cmd(
+    crashes: Path = typer.Option(..., help="Папка зі зтягнутими crash/panic"),
+    udid: Optional[str] = typer.Option(None, help="Опційно: UDID; якщо не вказано — спробує перший підключений"),
+) -> None:
+    """Розібрати panic-full / креші і дати підказки (вкл. звук після води)."""
+    from service_diag.analyze import build_service_advice
+
+    bat = info = None
+    try:
+        bat = C.collect_battery(udid)
+        info = C.collect_info(udid)
+    except Exception:  # noqa: BLE001
+        pass
+    advice = build_service_advice(info=info, battery=bat, crash_dir=crashes)
+    console.print_json(json.dumps(advice, default=str, ensure_ascii=False))
 
 
 @app.command("version")

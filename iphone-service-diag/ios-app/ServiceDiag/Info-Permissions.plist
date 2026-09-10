@@ -10,8 +10,12 @@
 	<string>Перевірка камери під час діагностики телефону.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Перевірка мікрофона під час діагностики телефону.</string>
-	<key>NSMotionUsageDescription</key>
-	<string>Перевірка акселерометра та гіроскопа.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Перевірка стану Bluetooth під час діагностики.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Перевірка стану Bluetooth під час діагностики.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Перевірка доступності Face ID під час діагностики.</string>
 	<key>com.apple.developer.nfc.readersession.formats</key>
 	<array>
 		<string>NDEF</string>
